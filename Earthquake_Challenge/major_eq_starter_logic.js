@@ -15,13 +15,11 @@ let satelliteStreets = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/sate
 	accessToken: API_KEY
 });
 
-// // Create third tile layer for the outdoor map style
 let outdoors = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v10/tiles/{z}/{x}/{y}?access_token={accessToken}', {
 	attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
 	maxZoom: 18,
 	accessToken: API_KEY
 });
-
 // Create the map object with center, zoom level and default layer.
 let map = L.map('mapid', {
 	center: [40.7, -94.5],
@@ -133,7 +131,7 @@ function styleInfo(feature) {
     stroke: true,
     weight: 0.5
   };
-}   
+}  
 
 // 5. Change the color function to use three colors for the major earthquakes based on the magnitude of the earthquake.
 function getColor(magnitude) {
@@ -159,21 +157,23 @@ function getRadius(magnitude) {
 //  after the marker has been created and styled.
 L.geoJson(data, {
   pointToLayer: function(feature, latlng) {
-    return L.circleMarker(latlng);
-  },
+  console.log(data);
+  return L.circleMarker(latlng);
+},
   style: styleInfo,
   onEachFeature: function(feature, layer) {
     layer.bindPopup("Magnitude: " + feature.properties.mag + "<br>Location: " + feature.properties.place);
   }
 }).addTo(majorEarthquakes);
 // 8. Add the major earthquakes layer to the map.
-majorEarthquakes.addTo(map);
+  majorEarthquakes.addTo(map);
 // 9. Close the braces and parentheses for the major earthquake data.
 });
 
 // Here we create a legend control object.
 let legend = L.control({
   position: "bottomright"
+
 });
 
 // Then add all the details for the legend
@@ -204,7 +204,7 @@ legend.onAdd = function() {
   legend.addTo(map);
 
 
-//   // Use d3.json to make a call to get our Tectonic Plate geoJSON data.
+  // Use d3.json to make a call to get our Tectonic Plate geoJSON data.
   d3.json("https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json").then((data) => {
         console.log(data);  
         L.geoJson(data, {
