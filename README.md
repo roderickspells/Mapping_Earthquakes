@@ -47,7 +47,7 @@ Leaflet.js
 
 #### Added Popup identifiers to display Earthquake Data
 
-- Can be toggle by click and unclicking earthquake instances on map
+- Can be toggled by clicking and unclicking earthquake instances on map
 
 ![image](https://github.com/roderickspells/Mapping_Earthquakes/blob/main/Images/popup.png)
 
